@@ -6,7 +6,7 @@ from .views import LibraryCreateView,LibraryListView,LibraryUpdateView,LibraryDe
 
 
 urlpatterns=[
-    path('',FlashcardListView.as_view(),name = 'index'),
+    path('',LibraryListView.as_view(),name = 'index'),
     path('register/', views.registerPage, name="register"),
     path('login/', views.loginPage, name="login"),
     path('logout/', views.logoutUser, name="logout"),
