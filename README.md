@@ -33,7 +33,7 @@ Technology used in the development of this application is HTML in templates and 
 #### Support and contact details
 You can find developers :
 
-1. hollaUs +254712387089.
+1. hollaMe +254712387089.
 
 ### License
 ### MIT License
