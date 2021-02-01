@@ -15,7 +15,6 @@ class Books(models.Model):
     description = models.TextField(max_length =200, blank=True, null=True)
     pub_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     category = models.CharField(max_length=200, blank=True, null=True)
-    image = models.ImageField(upload_to='media/', blank=True, null=True, default='default.jpg')
     images = CloudinaryField('images')
     def __str__(self):
         return str(self.name)
