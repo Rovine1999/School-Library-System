@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+{% load crispy_forms_tags %}
+{% load bootstrap3%}
+{% block content %}
+
+{{block.super}}
+<body style= "background-color:  #f9f9f9;">
+<h1 style="color: purple; text-align: center;  font-family: 'Yesteryear', cursive, serif; "><b><u>WELCOME TO SCHOOL LIBRARY</u></b></h1>
+    <div class="templates d-flex flex-row">
+        {% for  books in books %}
+
+        <div class="col-md-4 mt-4">
+            <div class="card profile-card-5">
+                       <div class="card-body pt-0">
+                    <h5 class="card-title">{{books.title}}</h5>
+                    <p class="card-text">{{books.description}}</p>
+                    <small class="card-text" style="color: blue; font-weight: 500;"  > Category :{{books.category}}</small>
+                    <hr>
+                
+                <p style="color: black; font-weight: 500;"  class="card-text "><img src="{{image.profile.image.url}}" class="nav-img mr-2" alt="">
+                By {{books.name|title}} <span style="float:right">{{books.pub_date|date}}</span>
+                  </p>                
+                <!-- <a class="btn btn-secondary btn-sm mt-1 mb-sm" href="{% url 'updateForm' books.id%}">Update</a>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'deleteForm'  books.id%}">Delete</a> -->
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+{%endblock%}
+
