@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+{% block content %}
+<h1 style="color: purple; text-align: center;"><b><u>WELCOME TO SCHOOL LIBRARY</u></b></h1>
+
+<div class="container-fluid main">
+    <div class="container-fluid headview">
+   
+    
+    <div class="templates d-flex flex-row">
+        {% for books in books %}
+
+        <div class="col-md-4 mt-4">
+            <div class="card profile-card-5">
+                <div class="card-img-block">
+         
+                <div class="card-body pt-0">
+                    <h5 class="card-title">{{books.title|title}}</h5>
+                    <p class="card-text">{{books.description}}</p>
+                    <hr>
+                    
+                  <p class="card-text "><img src="{{image.profile.image.url}}" class="nav-img mr-2" alt="">
+                By {{books.user.username|title}} <span style="float:right">{{books.date|date}}</span>
+            </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
