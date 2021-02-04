@@ -1,11 +1,13 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
+from django.contrib.auth.models import User
 from django.http  import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
-from .models import Books
-from .forms import CreateUserForm
+from .models import Books,Profile
+from .forms import CreateUserForm,UpdateUserForm,UpdateUserProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from django.views.generic import CreateView,ListView,DetailView,UpdateView,DeleteView
 
 # Create your views here.
@@ -58,7 +60,7 @@ class BooksCreateView(LoginRequiredMixin,CreateView):
 class BooksCreateView(LoginRequiredMixin,CreateView):
     model = Books
     fields = ['images', 'title', 'description', 'category']
-    template_name = 'post.html'
+    template_name = 'add.html'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -73,12 +75,12 @@ class BooksListView(ListView):
 
 class BooksCreateView(CreateView):
     model = Books
-    template_name = 'post.html'   
+    template_name = 'add.html'   
     fields= ['title', 'description','category']    
 
 class BooksUpdateView(UpdateView):
     model = Books
-    template_name = 'post.html'   
+    template_name = 'add.html'   
     fields= ['title', 'description','category']    
 
 class BooksDeleteView(DeleteView):
@@ -91,3 +93,27 @@ def deleteForm(request):
     }
     return render(request ,'delete.html', context )    
 
+@login_required(login_url='login')
+def profile(request, username):
+    return render(request, 'profile.html')
+
+def user_profile(request, username):
+    user_prof = get_object_or_404(User, username=username)
+    if request.user == user_prof:
+        return redirect('profile', username=request.user.username)
+    params = {
+        'user_prof': user_prof,
+    }
+    return render(request, 'userprofile.html', params)
+
+
+def search_category(request):
+    if 'category' in request.GET and request.GET["category"]:
+        category = request.GET.get("category")
+        searched_books = Books.filter_by_category(category)
+        message = f"{category}"
+        print("Books.......",searched_books)
+        return render(request, 'books.html', {"message": message, "books": searched_books})
+    else:
+        message = "You haven't searched for any books"
+        return render(request, 'category.html', {"message": message})
