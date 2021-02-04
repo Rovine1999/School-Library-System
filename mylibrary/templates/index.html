@@ -6,33 +6,28 @@
 {{block.super}}
 
 <body style="background-color:  #f9f9f9;">
-    <h1 style="color: purple; text-align: center;  font-family: 'Yesteryear', cursive, serif; "><b><u>WELCOME TO SCHOOL
-                LIBRARY</u></b></h1>
+    <h1 style="color: purple; text-align: center;  font-family: 'Yesteryear', cursive, serif; "><b><u>WELCOME TO SCHOOL LIBRARY</u></b></h1>
+              
     <div class="templates d-flex flex-row">
         {% for books in books %}
 
         <div class="col-md-4 mt-4">
             <div class="card profile-card-5">
                 <div class="card-body pt-0">
-                    <h5 class="card-title">{{books.title}}</h5>
-                    <p class="card-text">{{books.description}}</p>
-                    <small class="card-text" style="color: blue; font-weight: 500;"> Category :{{books.category}}</small>
-                        
+                    <h5 class="card-title" style="color: rgb(255, 196, 0); font-weight: 500;">{{books.title}}</h5>
+                    <p class="card-text"></p>
+                    <small class="card-text" style="color: blue; font-weight: 500;"> Category:{{books.category}}</small>
                     <hr>
-
-                    <p style="color: black; font-weight: 500;" class="card-text "><img src="{{image.profile.image.url}}"
-                            class="nav-img mr-2" alt="">
-                        By:{{ books.author}}  <span style="float:right">{{books.pub_date|date}}</span>
-                    <p>{{books.name|title}}</p>
-                    <p>{{ books.description}}</p>
-                    <p>{{ books.pub_date}}</p>
+                    <p style="color: black; font-weight: 500;" class="card-text "><img src="{{image.profile.image.url}}"  class="nav-img mr-2" alt="">
+                    By:{{ books.author }} <span style="float:right">{{books.pub_date|date}}</span>
+                    <p>{{ books.name|title }}</p>
+                    <p>{{ books.description }}</p>
+                    <p>{{ books.pub_date }}</p>
                     </p>
-                    
+
                 </div>
             </div>
         </div>
-
-        
 
         {% endfor %}
     </div>
