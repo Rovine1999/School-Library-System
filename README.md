@@ -19,8 +19,7 @@ A website that keep the records a school library
 7. (virtual)$ cd School-Library-System
 8. (virtual)$ python manage.py runserver
 And navigate to http://127.0.0.1:8000/School-Library-System/.
-9. To interact with the website copy and paste the URL on the browser: https://rovine-flashcards.herokuapp.com/
-
+9. To interact with the website copy and paste the URL on the browser: https://school-library-system.herokuapp.com/
 In order to test the purchase flows, fill in the account details in project/views.py to match your SANDBOX developer credentials.
 
 
