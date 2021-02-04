@@ -70,7 +70,7 @@ class BooksCreateView(LoginRequiredMixin,CreateView):
 class BooksListView(ListView):
     model = Books  
     template_name = 'index.html'   
-    context_object_name = 'flashcards'
+    context_object_name = 'books'
     ordering = ['-pub_date']
 
 class BooksCreateView(CreateView):

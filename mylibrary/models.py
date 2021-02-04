@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib import admin
 import datetime as dt
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
@@ -11,7 +12,7 @@ from django.db.models.signals import post_save
 class Books(models.Model):
     title = models.CharField(max_length=50, blank=True, null=True)
     name = models.CharField(max_length =30)
-    writer = models.CharField(max_length =50)
+    author = models.CharField(max_length =50, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="books", blank=True,null=True)
     description = models.TextField(max_length =200, blank=True, null=True)
     pub_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
@@ -39,3 +40,20 @@ class Books(models.Model):
     def search_category(cls,search_term):
         searched_category = Books.objects.filter(name =search_term)
         return searched_category
+
+
+class BooksPostAdmin(admin.ModelAdmin):
+    readonly_fields = ('status',)
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    profile_picture = models.ImageField(upload_to='images/', default='default.png')    
+    bio = models.TextField(max_length=500, default="My Bio", blank=True)   
+    name = models.CharField(blank=True, max_length=120)    
+    location = models.CharField(max_length=60, blank=True)    
+    email = models.EmailField(max_length=100, blank=True)
+
+
+    def __str__(self):        
+        return f'{self.user.username} Profile'
