@@ -59,7 +59,7 @@ class BooksCreateView(LoginRequiredMixin,CreateView):
 
 class BooksCreateView(LoginRequiredMixin,CreateView):
     model = Books
-    fields = ['images', 'title', 'description', 'category']
+    fields = ['title', 'author', ' description', 'category' 'images']
     template_name = 'add.html'
 
     def form_valid(self, form):
@@ -76,7 +76,7 @@ class BooksListView(ListView):
 class BooksCreateView(CreateView):
     model = Books
     template_name = 'add.html'   
-    fields= ['title', 'description','category']    
+    fields= ['images', 'title', 'author', 'description','category']    
 
 class BooksUpdateView(UpdateView):
     model = Books
@@ -110,10 +110,10 @@ def user_profile(request, username):
 def search_category(request):
     if 'category' in request.GET and request.GET["category"]:
         category = request.GET.get("category")
-        searched_books = Books.filter_by_category(category)
+        searched_books = Books.search_category(category)
         message = f"{category}"
         print("Books.......",searched_books)
         return render(request, 'books.html', {"message": message, "books": searched_books})
     else:
         message = "You haven't searched for any books"
-        return render(request, 'category.html', {"message": message})
+        return render(request, 'search.html', {"message": message})

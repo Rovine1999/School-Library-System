@@ -6,12 +6,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<nav  style="height: 20px;" class="navbar navbar-primary">
+<nav  style="height: 13px;" class="navbar navbar-primary">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="{% url 'index' %}">Library</a>
     </div>
   </div>
+  <form style="height: 15px; margin-left: 40%; margin-top: -6%;" action="{% url 'search_category' %}">
+    <div   role="search"  class="input-group" name = "category">
+      <div class="form-outline">
+        <input type="search" id="form1" class="form-control" placeholder="Search Category" name="category"/>
+      </div>
+      <button  type="submit" style="height: 35px; margin-top: -0.001%;"  class="btn btn-primary"><i class="fas fa-search"></i> </button>
+    </div>
+  </form>
+  
   <!--The search form above-->
   <div class="col-sm-6 col-md-6">
     {% if user.is_authenticated %}

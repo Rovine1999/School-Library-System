@@ -13,13 +13,20 @@
       {% csrf_token %}
     <h3 class="title is-3" style="font-size: large; color: blue; text-align: center;">Add</h3>
 
-         
+    
+  
           <div class="field">
               <label class="label is-medium" style="font-size: small; color: black;">Title</label>
               <div class="control">
                 {{ form.title }}
               </div>
           </div>
+          <div class="field">
+            <label class="label is-medium" style="font-size: small; color: black;">Author</label>
+            <div class="control">
+              {{ form.author }}
+            </div>
+        </div>
 
           <div class="field">
               <label class="label is-medium" style="font-size: small; color: black;">Description</label>
@@ -34,6 +41,16 @@
                 {{ form.category }}
               </div>
           </div>
+          
+        </div>
+        <div class="field">
+          <label class="label is-medium" style="font-size: small; color: black;">Image</label>
+          <div class="control">
+            {{ form.images }}
+          </div>
+      </div>
+        
+
 
           
     <div class="form-group">
