@@ -1,55 +1,49 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-success">
-  <!-- Container wrapper -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<nav  style="height: 20px;" class="navbar navbar-primary">
   <div class="container-fluid">
-    <!-- Toggle button -->
-    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarRightAlignExample"
-      aria-controls="navbarRightAlignExample" aria-expanded="false" aria-label="Toggle navigation"> <i
-        class="fas fa-bars"></i></button>
-
-
-    <div class="input-group">
-      <div class="form-outline">
-        <input id="search-focus" type="search" id="form1" class="form-control" placeholder="Search Category">
-        <label class="form-label" for="form1"></label>
-      </div>
-      <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{% url 'index' %}">Library</a>
     </div>
-
-    <!-- Collapsible wrapper -->
-    <div class="collapse navbar-collapse" id="navbarRightAlignExample">
-      <!-- Left links -->
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
-
-          <div class="navbar-start">
-            <a class="navbar-item" style="text-decoration: hovered; color:red" href="{% url 'add' %}">ADD</a>
-          </div>
-          
-        <!-- Navbar dropdown -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown"
-            aria-expanded="false">Account</a>
-          <!-- Dropdown menu -->
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><a class="dropdown-item" href="#">Login</a></li>
-            <li><a class="dropdown-item" href="#">Update Profile</a></li>
-            </li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-            </li><a class="dropdown-item" href="#">Update Profile</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
-          <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-        </li>
-      </ul>
-
-      <!-- Left links -->
-    </div>
-    <!-- Collapsible wrapper -->
   </div>
-  <!-- Container wrapper -->
+  <!--The search form above-->
+  <div class="col-sm-6 col-md-6">
+    {% if user.is_authenticated %}
+    <ul>
+      <li style=" margin-left: 189%; height: 50px; margin-top: -8%;" class="dropdown">
+        <a href="#" class="dropdown-toggle btn btn-info" data-toggle="dropdown" role="button" aria-expanded="false">Account
+                  <span class="caret"></span>
+              </a>
+        <ul class="dropdown-menu" role="menu">
+          <li>
+            <a href="admin">AdminLogin</a>
+          </li>
+          <li>
+            <a href="{% url 'profile' user.username %}">Update Profile</a>
+          </li>
+          <li>
+            <a href="{% url 'add' %}">Add</a>
+          </li>
+          <li>
+            <a href="{% url 'logout' %}">Logout</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    {% else %}
+    <li>
+      <a class='btn btn-default' href="login">Login</a>
+    </li>
+
+    {% endif %}
+  </div>
 </nav>
 
-
+</body>
+</html>
